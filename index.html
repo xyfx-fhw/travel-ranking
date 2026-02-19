@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旅行天梯榜</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+    <!-- 动态背景 -->
+    <div class="background-container">
+        <div class="background-image" id="bgImage"></div>
+        <div class="background-overlay"></div>
+    </div>
+
+    <!-- 头部 (移出 main-container 以实现全宽) -->
+    <header class="header glass-effect">
+        <div class="header-container">
+            <div class="logo">
+                <h1>TRAVEL RANKING</h1>
+                <span class="subtitle">雪云飞星的旅行日志</span>
+            </div>
+            <nav class="nav-tabs">
+                <button class="nav-btn active" data-view="regions">
+                    <i class="fas fa-map-location-dot"></i> 地区排行
+                </button>
+                <button class="nav-btn" data-view="all-spots">
+                    <i class="fas fa-trophy"></i> 全景点排行
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主容器 -->
+    <div class="main-container">
+        <!-- 内容区域 -->
+        <div class="content-wrapper">
+            <!-- 左侧栏 - 地区列表 -->
+            <aside class="sidebar glass-effect" id="sidebar">
+                <div class="sidebar-header">
+                    <h2><i class="fas fa-compass"></i> 足迹地图</h2>
+                    <span class="region-count">已探索 <span id="regionCount">0</span> 个地区</span>
+                    <p class="sidebar-note"><i class="fas fa-info-circle"></i> 博主自2020年来的主观综合排名，仅供参考</p>
+                </div>
+                <div class="region-list" id="regionList">
+                    <!-- 动态生成地区卡片 -->
+                </div>
+            </aside>
+
+            <!-- 右侧主内容区 -->
+            <main class="main-content">
+                <!-- 视图切换按钮 -->
+                <div class="view-toggle glass-effect" id="viewToggle">
+                    <button class="toggle-btn active" data-mode="cards">
+                        <i class="fas fa-th-large"></i> 景点卡片
+                    </button>
+                    <button class="toggle-btn" data-mode="map">
+                        <i class="fas fa-map"></i> 地图模式
+                    </button>
+                </div>
+
+                <!-- 当前地区信息 -->
+                <div class="region-info glass-effect" id="regionInfo">
+                    <div class="region-title">
+                        <span class="rank-badge">#1</span>
+                        <h2 id="currentRegionName">选择一个地区</h2>
+                    </div>
+                    <p class="region-description" id="currentRegionDesc">点击左侧地区查看详细景点排行</p>
+                </div>
+
+                <!-- 景点卡片视图 -->
+                <div class="spots-container" id="spotsContainer">
+                    <div class="spots-grid" id="spotsGrid">
+                        <!-- 动态生成景点卡片 -->
+                    </div>
+                </div>
+
+                <!-- 地图视图 -->
+                <div class="map-container hidden" id="mapContainer">
+                    <div id="map"></div>
+                </div>
+
+                <!-- 全景点排行视图 -->
+                <div class="all-spots-container hidden" id="allSpotsContainer">
+                    <div class="all-spots-header glass-effect">
+                        <h2><i class="fas fa-crown"></i> 全景点天梯榜</h2>
+                        <p>所有景点的终极排名</p>
+                    </div>
+                    <div class="all-spots-grid" id="allSpotsGrid">
+                        <!-- 动态生成全景点排行 -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- 景点详情模态框 -->
+    <div class="modal hidden" id="spotModal">
+        <div class="modal-content glass-effect">
+            <button class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-image" id="modalImage"></div>
+            <div class="modal-body">
+                <div class="modal-rank" id="modalRank">#1</div>
+                <h2 class="modal-title" id="modalTitle">景点名称</h2>
+                <p class="modal-region" id="modalRegion">所属地区</p>
+                <div class="modal-rating" id="modalRating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="modal-description" id="modalDescription">景点描述</p>
+                <div class="modal-tags" id="modalTags">
+                    <!-- 动态生成标签 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
