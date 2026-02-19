@@ -26,7 +26,7 @@ const travelData = {
                     id: 'aba-1',
                     name: '九寨沟',
                     rank: 1,
-                    rating: 96,
+                    rating: 97,
                     image: 'images/aba-jiuzhaigou.webp',
                     description: '国内旅游的绝对天花板，论风景、人文和管理服务都是顶级。四季皆美，哪怕是阴天也难掩其秀色。真正做到了“九寨归来不看水”。',
                     tags: ['世界遗产', '湖泊', '秋景'],
